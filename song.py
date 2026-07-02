@@ -1,6 +1,6 @@
 class Song:
-    def __init__(self,id,title,artist,info):
-        self.song_id=id
+    def __init__(self,song_id,title,artist,info):
+        self.song_id=song_id
         self.title=title
         self.artist=artist
         self.info=info

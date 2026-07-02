@@ -30,11 +30,11 @@ class PlaylistManager:
             return
         for key in self.playlists:
             print(key)
-    def add_song_to_library(self,song_id,title,info,artist):
+    def add_song_to_library(self,song_id,title,artist,info):
         s=Song(song_id,title,artist,info)
         self.library.add_song(s)
     def display_playlist(self,playlist_name):
-        p=Playlist(playlist_name)
+        p=self.find_playlist(playlist_name)
         p.display()
     def display_song_library(self):
         self.library.display_all_songs()
