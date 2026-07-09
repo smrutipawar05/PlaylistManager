@@ -9,5 +9,12 @@ class Song:
         print(f"Title:{self.title}")
         print(f"Artist:{self.artist}")
         print(f"Info:{self.info}")
+    def values(self):
+        return(
+            self.song_id,
+            self.title,
+            self.artist,
+            self.info
+        )
 #s1=Song(1,"Believer","Imagine Dragons","Rock")
 #s1.display()  
