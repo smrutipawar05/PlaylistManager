@@ -1,7 +1,12 @@
 from playlistmanager import PlaylistManager
-
-pm=PlaylistManager()
-song_id=1
+from SqliteStorage import SQLiteStorage
+from song_library import SongLibrary
+storage=SQLiteStorage("playlist.db")
+library=SongLibrary()
+pm=PlaylistManager(storage,library)
+pm.load_library()
+pm.load_playlists()
+pm.load_playlist_songs()
 while True:
     print("-------------PlaylistManager---------------")
     print( '''
@@ -39,12 +44,12 @@ while True:
         info=input("Enter song info")
         try:
             pm.add_song_to_library(
-                song_id,
+                # song_id,
                 title,
                 artist,
                 info
             )
-            song_id+=1
+            # song_id+=1
         except TypeError:
             print("Imporper format.")
         except ValueError:
