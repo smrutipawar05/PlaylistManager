@@ -13,7 +13,7 @@ class SQLiteStorage(Storage):
     def create_tables(self):
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS Songs(
                     song_id INTEGER PRIMARY KEY,            
-                    title text,
+                    title text, 
                     artist text,
                     info text                            
                 );
