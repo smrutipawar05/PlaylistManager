@@ -64,20 +64,34 @@ def test_load_library():
     #storage.save_library(library1)
     library2=SongLibrary()
     manager2=PlaylistManager(storage,library2)
-    loaded_library=manager2.load_library()
-    song=loaded_library.find_song("xyz","abc")
+    manager2.load_library()
+    song=library2.find_song("xyz","abc")
     assert song.title=="xyz"
     assert song.artist=="abc"
-def load_playlists():
+def test_load_playlists():
     storage=SQLiteStorage(":memory:")
     library1=SongLibrary()
     manager1=PlaylistManager(storage,library1)
-    song=manager1.add_song_to_library("xyz","abc","info")  
-    manager1.add_song_to_playlist("playlist_name",song.title,song.artist)
-    p=manager1.find_playlist("playlist_name")
-    storage.save_playlist(p)
+    p=manager1.create_playlist("playlist_name")
+    #storage.save_playlist(p)
     library2=SongLibrary()
-    manager2=PlaylistManager(storage,library1)
-    loaded_library=manager2.load_library()
-    load_playlists=manager2.load_playlists()
+    manager2=PlaylistManager(storage,library2)
+    loaded_playlists=manager2.load_playlists()
+    assert loaded_playlists[0].playlist_name=="playlist_name"
+def test_load_playlist_songs():
+    storage=SQLiteStorage(":memory:")
+    library1=SongLibrary()
+    manager1=PlaylistManager(storage,library1)
+    p=manager1.create_playlist("playlist_name")
+    song=manager1.add_song_to_library("xyz","abc","info")
+    manager1.add_song_to_playlist("playlist_name",song.title,song.artist)
+    #storage.save_playlist(p)
+    library2=SongLibrary()
+    manager2=PlaylistManager(storage,library2)
+    manager2.load_library()
+    loaded_playlists=manager2.load_playlists()
+    manager2.load_playlist_songs()
+    p_loaded=loaded_playlists[0]
+    assert p_loaded.songs[0].title=="xyz"
+    assert p_loaded.songs[0].artist=="abc"
     
