@@ -25,6 +25,7 @@ class PlaylistManager:
         s=self.library.find_song(title,artist)
         position=p.add_song(s)
         self.storage.save_playlist_song(p.playlist_id,s.song_id,position)
+        return position
     def remove_song_from_playlist(self,playlist_name,title,artist):
         p=self.find_playlist(playlist_name)
         s=self.library.find_song(title,artist)
@@ -39,6 +40,7 @@ class PlaylistManager:
         s=Song(title,artist,info)
         self.library.add_song(s)
         self.storage.save_song(s)
+        return s
     def display_playlist(self,playlist_name):
         p=self.find_playlist(playlist_name)
         p.display()
@@ -48,6 +50,7 @@ class PlaylistManager:
         songs=self.storage.load_songs()
         for song in songs:
             self.library.add_song(song)
+        return self.library
     def find_playlist_by_id(self,playlist_id):
         for playlist in self.playlists.values():
             if playlist_id==playlist.playlist_id:
@@ -56,11 +59,14 @@ class PlaylistManager:
         playlists=self.storage.load_playlists()
         for playlist in playlists:
             self.playlists[playlist.name()]=playlist
+        return playlists
     def load_playlist_songs(self):
         playlists_songs=self.storage.load_playlist_songs()
         for playlist_id,song_id,position in playlists_songs:
             playlist=self.find_playlist_by_id(playlist_id)
             song=self.library.find_song_by_id(song_id)
+            print(song_id)
+            print(song)
             playlist.add_song(song)
-
+        return playlist
     
