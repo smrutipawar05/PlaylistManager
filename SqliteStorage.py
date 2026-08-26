@@ -6,7 +6,9 @@ from playlist import Playlist
 class SQLiteStorage(Storage):
     def __init__(self,file_name):
         self.file_name=file_name
-        self.connection=sqlite3.connect(file_name)
+        self.connection=sqlite3.connect(
+            file_name,
+            check_same_thread=False)                            
         self.cursor=self.connection.cursor()
         self.cursor.execute("PRAGMA foreign_keys= ON")
         self.create_tables()

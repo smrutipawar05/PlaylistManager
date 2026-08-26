@@ -3,6 +3,8 @@ from SqliteStorage import SQLiteStorage
 from song_library import SongLibrary
 from song_service import SongService
 from router import create_router
+from fastapi import FastAPI
+app=FastAPI()
 storage=SQLiteStorage("playlist.db")
 service=SongService(storage)
 router=create_router(service)

@@ -1,4 +1,4 @@
-import fastAPI
+from fastapi import APIRouter
 from schemas import SongCreate
 from mapper import Mapper
 def create_router(service):
