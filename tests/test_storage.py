@@ -31,7 +31,7 @@ def test_load_songs():
     assert loaded_song1.title==song1.title
     assert loaded_song2.title==song2.title
     assert loaded_song1.song_id==song1.song_id
-    assert loaded_song2.sond_is==song2.song_id
+    assert loaded_song2.song_id==song2.song_id
 def test_save_playlist():
     storage=SQLiteStorage(":memory:")
     playlist=Playlist("p_name")

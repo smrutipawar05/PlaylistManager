@@ -5,11 +5,23 @@
 from abc import ABC, abstractmethod
 # import json
 class Storage(ABC):  
-    @abstractmethod
+    
     def load_songs(self):
         raise NotImplementedError
     @abstractmethod
     def save_song(self):
+        raise NotImplementedError
+    @abstractmethod
+    def delete_song(self):
+        raise NotImplementedError
+    @abstractmethod
+    def update_song(self):
+        raise NotImplementedError
+
+    def get_song(self):
+        raise NotImplementedError
+
+    def list_songs(self):
         raise NotImplementedError
     # def song_to_dict(self,song):
     #     return {
