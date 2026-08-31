@@ -37,7 +37,7 @@ def create_router(service):
                 status_code=409,
                 detail="Song Already Exists."
             )
-    @router.delete("/song/song_id")
+    @router.delete("/song/{song_id}")
     def delete_song(song_id:int):
         try:
             song=service.delete_song(song_id)
