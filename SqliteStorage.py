@@ -135,4 +135,3 @@ class SQLiteStorage(Storage):
             WHERE song_id=?'''
         self.cursor.execute(SQL,(song_id,))
         self.connection.commit()
-    
